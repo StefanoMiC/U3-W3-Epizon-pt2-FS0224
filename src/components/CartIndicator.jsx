@@ -3,6 +3,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, FormControl } from "react-bootstrap";
 import { useState } from "react";
+import { setUserAction } from "../redux/actions";
 
 const CartIndicator = () => {
   // vogliamo collegarci allo Store Redux in lettura attraverso l'hook dedicato useSelector()
@@ -33,7 +34,13 @@ const CartIndicator = () => {
             onChange={e => setInputValue(e.target.value)}
             className="w-50"
           />
-          <Button variant="primary" onClick={() => dispatch({ type: "SET_USER", payload: inputValue })}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              // dispatch({ type: "SET_USER", payload: inputValue })
+              dispatch(setUserAction(inputValue));
+            }}
+          >
             Log In
           </Button>
         </div>

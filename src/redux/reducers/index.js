@@ -2,6 +2,8 @@
 // il reducer prende lo STATO CORRENTE dell'applicazione nel momento in cui viene "risvegliato" (dopo una dispatch)
 // e prenderà anche l'ACTION che gli inviamo attraverso la dispatch() dal nostro componente o UI
 
+import { ADD_TO_CART, REMOVE_FROM_CART, SELECT_BOOK, SET_USER } from "../actions";
+
 // a questo punto con STATO CORRENTE e ACTION genererà il NUOVO STATO GENERALE, il nuovo stato del nostro STORE.
 
 // ogni volta che verrà risvegliato avrà bisogno di leggere dalla nostra action il TYPE ed eventuale PAYLOAD
@@ -42,7 +44,7 @@ const mainReducer = (state = initialState, action) => {
     // // qui dentro si computerà il nuovo stato globale
     // return {}
 
-    case "ADD_TO_CART":
+    case ADD_TO_CART:
       return {
         ...state,
         cart: {
@@ -58,7 +60,7 @@ const mainReducer = (state = initialState, action) => {
         }
       };
 
-    case "REMOVE_FROM_CART":
+    case REMOVE_FROM_CART:
       return {
         ...state,
         cart: {
@@ -70,7 +72,7 @@ const mainReducer = (state = initialState, action) => {
 
           // content: state.cart.content.slice(0, action.payload).concat(state.cart.content.slice(action.payload + 1))
           // content: [...state.cart.content.slice(0, action.payload), ...state.cart.content.slice(action.payload + 1)]
-
+          lastModified: new Date().toISOString(),
           content: state.cart.content.filter((_, i) => i !== action.payload)
 
           // da NON FARE assolutamente questo:
@@ -79,7 +81,7 @@ const mainReducer = (state = initialState, action) => {
         }
       };
 
-    case "SELECT_BOOK":
+    case SELECT_BOOK:
       return {
         ...state,
         bookSelected: {
@@ -88,7 +90,7 @@ const mainReducer = (state = initialState, action) => {
         }
       };
 
-    case "SET_USER":
+    case SET_USER:
       return {
         ...state,
         user: {

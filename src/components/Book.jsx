@@ -1,5 +1,6 @@
 import { Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { selectBookAction } from "../redux/actions";
 
 const Book = ({ book }) => {
   const dispatch = useDispatch();
@@ -8,7 +9,10 @@ const Book = ({ book }) => {
   return (
     <Card
       className={bookSelected?.id === book.id ? "border-2 border-primary mt-3" : "border-2 mt-3"}
-      onClick={() => dispatch({ type: "SELECT_BOOK", payload: book })}
+      onClick={() => {
+        // dispatch({ type: "SELECT_BOOK", payload: book })
+        dispatch(selectBookAction(book));
+      }}
       style={{ cursor: "pointer" }}
     >
       <Card.Body className="d-flex">

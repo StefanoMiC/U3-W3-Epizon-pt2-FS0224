@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
+import { setUserAction } from "../redux/actions";
 // connect è la funzione di alto livello (HOF - higher order function ) che connette il nostro componente allo Store, lo sottoscrive ad ogni cambiamento di stato
 // questa funzione vuole due parametri (mapStateToProps, mapDispatchToProps)
 
@@ -31,7 +32,8 @@ const mapDispatchToProps = dispatch => {
 
   return {
     setUser: str => {
-      dispatch({ type: "SET_USER", payload: str });
+      // dispatch({ type: "SET_USER", payload: str });
+      dispatch(setUserAction(str));
     }
   };
 };

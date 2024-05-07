@@ -1,5 +1,6 @@
 import { Col, Row, Button, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { addToCartAction, addToCartActionWithThunk } from "../redux/actions";
 
 const BookDetail = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,12 @@ const BookDetail = () => {
                   onClick={() => {
                     // l'oggetto passato come argomento alla dispatch è sempre un oggetto ACTION:
                     // di conseguenza ci vuole un TYPE obbligatorio e forse un PAYLOAD (in questo caso ci servirà di sicuro!)
-                    dispatch({ type: "ADD_TO_CART", payload: bookSelected });
+                    // dispatch({ type: ADD_TO_CART, payload: bookSelected });
+
+                    // a differenza da prima in cui creavamo l'oggetto sul posto,
+                    // in questo modo richiamiamo l'action creator che a sua volta ci ritorna l'oggetto finito
+                    // dispatch(addToCartAction(bookSelected));
+                    dispatch(addToCartActionWithThunk(bookSelected));
                   }}
                 >
                   ADD TO CART
