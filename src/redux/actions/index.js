@@ -3,6 +3,10 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const SELECT_BOOK = "SELECT_BOOK";
 export const SET_USER = "SET_USER";
 export const GET_BOOKS = "GET_BOOKS";
+export const GET_BOOKS_LOADING_ON = "GET_BOOKS_LOADING_ON";
+export const GET_BOOKS_LOADING_OFF = "GET_BOOKS_LOADING_OFF";
+export const GET_BOOKS_ERROR_ON = "GET_BOOKS_ERROR_ON";
+export const GET_BOOKS_ERROR_OFF = "GET_BOOKS_ERROR_OFF";
 
 // ACTION CREATORS - Funzioni che tornano l'azione (oggetto)
 
@@ -49,11 +53,16 @@ export const getBooksAction = () => {
         // a questo punto avremo aspettato la risoluzione della fetch e ottenuto i dati dei libri
         // e quindi potremmo fare la dispatch di un'azione con fetchedBooks come payload!
         dispatch({ type: GET_BOOKS, payload: fetchedBooks });
+        dispatch({ type: GET_BOOKS_ERROR_OFF });
       } else {
         console.log("error");
+        throw new Error("Errore nel reperimento dei dati 😥");
       }
     } catch (error) {
       console.log(error);
+      dispatch({ type: GET_BOOKS_ERROR_ON, payload: error.message });
+    } finally {
+      dispatch({ type: GET_BOOKS_LOADING_OFF });
     }
   };
 };

@@ -1,6 +1,6 @@
 import { Col, Row, Button, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCartAction, addToCartActionWithThunk } from "../redux/actions";
+import { addToCartActionWithThunk } from "../redux/actions";
 
 const BookDetail = () => {
   const dispatch = useDispatch();

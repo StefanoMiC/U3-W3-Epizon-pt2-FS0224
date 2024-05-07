@@ -9,13 +9,14 @@ import { useSelector } from "react-redux";
 
 const App = () => {
   const bookSelected = useSelector(state => state.bookSelected.content);
+  const isLoading = useSelector(state => state.books.isLoading);
   return (
     <BrowserRouter>
       <Container className="epizon-container">
         <Row>
           <Col sm={12} className="text-center background-div">
             <Link to="/">
-              <h1 className="d-inline-block me-3">Epizon Book Store</h1>
+              <h1 className="d-inline-block me-3">Epizon Book Store {isLoading ? "..." : ""}</h1>
               {bookSelected && <img src={bookSelected.imageUrl} alt={bookSelected.title} height="100" />}
             </Link>
           </Col>
